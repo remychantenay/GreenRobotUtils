@@ -6,7 +6,8 @@ import android.content.pm.PackageManager;
 
 /**
  * This class allows to get some information about the current app
- * Created by remychantenay on 15/10/2014.
+ * @author CHANTENAY Remy
+ * @mail remy.chantenay at gmail.com
  */
 public final class CurrentApp {
 
