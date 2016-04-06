@@ -48,10 +48,18 @@ public class PermissionActivity extends AppCompatActivity {
         return;
     }
 
+    /**
+     * This method will be triggered if the permission asked is GRANTED
+     * @param _requestCode
+     */
     public void permissionGranted(int _requestCode) {
         // To Override
     }
 
+    /**
+     * This method will be triggered if the permission asked is DENIED
+     * @param _requestCode
+     */
     public void permissionDenied(int _requestCode) {
         // To Override
     }
