@@ -18,13 +18,18 @@ import android.util.Log;
 public final class SamsungBadgeHelper {
     private final static String TAG = "SamsungBadgeHelper";
     private final static String BRAND_NAME = "samsung";
+    private final static String PROVIDER_URI = "content://com.sec.badge/apps";
+
+    private final static String CONTENT_VALUE_KEY_PACKAGE = "package";
+    private final static String CONTENT_VALUE_KEY_CLASS = "class";
+    private final static String CONTENT_VALUE_KEY_BADGECOUNT = "badgecount";
 
     /**
-     * Allows to set a badge count in the samsung BadgeProvider
+     * Allows to SET a badge count using the Samsung Badge Provider
      * @param _context
-     * @param _className
+     * @param _className (Name of your activity declared in the manifest as android.intent.action.MAIN)
      * @param _value
-     * @return true if everything worked fine, FALSE otherwise
+     * @return true if everything worked fine, false otherwise
      */
     public static boolean setBadgeCount(Context _context, String _className, int _value) {
 
@@ -32,18 +37,14 @@ public final class SamsungBadgeHelper {
             if (Build.BRAND.equalsIgnoreCase(BRAND_NAME)) {
                 Log.i(TAG, "Device is a Samsung device. We can use the BadgeProvider.");
                 ContentValues cv = new ContentValues();
-                cv.put("package", _context.getPackageName());
-                // Name of your activity declared in the manifest as android.intent.action.MAIN.
-                // Must be fully qualified name as shown below
-                cv.put("class", _className);
-                cv.put("badgecount", _value); // integer count you want to display
+                cv.put(CONTENT_VALUE_KEY_PACKAGE, _context.getPackageName());
+                cv.put(CONTENT_VALUE_KEY_CLASS, _className);
+                cv.put(CONTENT_VALUE_KEY_BADGECOUNT, _value);
 
-                // Execute insert
                 try {
-                    if (_context.getContentResolver().insert(Uri.parse("content://com.sec.badge/apps"), cv) != null) {
+                    if (_context.getContentResolver().insert(Uri.parse(PROVIDER_URI), cv) != null) {
                         return true;
                     }
-
                 } catch (IllegalArgumentException e) {
                     Log.e(TAG, e.getMessage());
                 }
@@ -61,21 +62,20 @@ public final class SamsungBadgeHelper {
 
 
     /**
-     * Allows to clean the badge count in the Samsung BadgeProvider
+     * Allows to CLEAN the badge count using the Samsung Badge Provider
      * @param _context
-     * @return true if everything worked fine, FALSE otherwise
+     * @return true if everything worked fine, false otherwise
      */
     public static boolean cleanBadgeCount(Context _context) {
         try {
             if (Build.BRAND.equalsIgnoreCase(BRAND_NAME)) {
                 Log.i(TAG, "Device is a Samsung device. We can use the BadgeProvider");
                 ContentValues cv = new ContentValues();
-                cv.put("badgecount", 0);
+                cv.put(CONTENT_VALUE_KEY_BADGECOUNT, 0);
                 try {
-                    if (_context.getContentResolver().update(Uri.parse("content://com.sec.badge/apps"), cv, "package=?", new String[] {_context.getPackageName()}) != -1) {
+                    if (_context.getContentResolver().update(Uri.parse(PROVIDER_URI), cv, "package=?", new String[] {_context.getPackageName()}) != -1) {
                         return true;
                     }
-
                 } catch (IllegalArgumentException e) {
                     Log.e(TAG, e.getMessage());
                 }
