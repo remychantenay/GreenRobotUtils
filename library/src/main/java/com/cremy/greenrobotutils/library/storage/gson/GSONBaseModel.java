@@ -2,61 +2,35 @@ package com.cremy.greenrobotutils.library.storage.gson;
 
 import android.content.Context;
 
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 
 /**
  * Created by remychantenay on 11/04/2016.
  */
-public class GSONBaseModel implements GSONBaseModelInterface{
+public class GSONBaseModel  {
     private final static String TAG = "GSONBaseModel";
-
-    //region Serialized Fields
-    @SerializedName("id") protected long id = 0;
-    //endregion
-
 
     /**
      * Allows to _save_ the model into local SharedPreferences
      * @param _context
-     * @return true if success, false otherwise
+     * @param _tag
+     * @param _classType
+     * @param _object
+     * @return
      */
-    @Override
-    public boolean save(Context _context) {
-        return GSONStorageManager.setObject(_context, true, TAG, this, getType());
-    }
-
-
-    @Override
-    public Object load(Context _context) {
-        GSONBaseModel obj = (GSONBaseModel) GSONStorageManager.getObject(_context, TAG, getType());
-        if (obj == null) {
-            obj = new GSONBaseModel();
-        }
-
-        return obj;
+    public static boolean save(Context _context, final String _tag, final Type _classType, Object _object) {
+        return GSONStorageManager.setObject(_context, true, _tag, _object, _classType);
     }
 
 
     /**
-     * Allows to get the class type
-     * Mandatory to use GSON
+     * Allows to _load_ the model from local SharedPreferences
+     * @param _context
+     * @param _tag
+     * @param _classType
      * @return
      */
-    @Override
-    public Type getType() {
-        return new TypeToken<GSONBaseModel>() {}.getType();
+    public static Object load(Context _context, final String _tag, final Type _classType) {
+        return GSONStorageManager.getObject(_context, _tag, _classType);
     }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
 }
