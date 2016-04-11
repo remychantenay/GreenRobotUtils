@@ -14,7 +14,7 @@ public class GSONBaseModel implements GSONBaseModelInterface{
     private final static String TAG = "GSONBaseModel";
 
     //region Serialized Fields
-    @SerializedName("id") private long id = 0;
+    @SerializedName("id") protected long id = 0;
     //endregion
 
 
@@ -45,6 +45,7 @@ public class GSONBaseModel implements GSONBaseModelInterface{
      * Mandatory to use GSON
      * @return
      */
+    @Override
     public Type getType() {
         return new TypeToken<GSONBaseModel>() {}.getType();
     }

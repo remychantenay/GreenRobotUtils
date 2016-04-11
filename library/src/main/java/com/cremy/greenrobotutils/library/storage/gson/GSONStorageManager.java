@@ -1,8 +1,6 @@
 package com.cremy.greenrobotutils.library.storage.gson;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.cremy.greenrobotutils.library.storage.PreferencesManager;
 
@@ -32,11 +30,8 @@ public final class GSONStorageManager {
                                     final Object _object,
                                     final Type _classType)
     {
-        final String json = GSONHelper.getInstance().toJson(_object, _classType);
 
-        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(_context);
-        SharedPreferences.Editor ed = mPrefs.edit();
-        ed.putString(_key, json);
+        final String json = GSONHelper.getInstance().toJson(_object, _classType);
         return PreferencesManager.setString(_context, _isAsync, _key, json);
     }
 
@@ -49,10 +44,9 @@ public final class GSONStorageManager {
      */
     public static Object getObject(Context _context, final String _key, final Type _classType)
     {
-        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(_context);
-        String str = mPrefs.getString(_key, "");
+        String str = PreferencesManager.getString(_context, _key);
 
-        if (str.isEmpty()) {
+        if (str==null) {
             return null;
         }
 
