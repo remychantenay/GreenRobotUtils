@@ -15,3 +15,26 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# Gson specific
+-keepattributes Signature
+-keep class sun.misc.Unsafe { *; }
+
+-keep class java.util.** { *; }
+-keep class * implements java.io.Serializable { *; }
+-keepattributes *Annotation*
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
