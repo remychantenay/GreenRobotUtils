@@ -19,6 +19,20 @@ public class GSONBaseModel  {
      * @return
      */
     public static boolean save(Context _context, final String _tag, final Type _classType, Object _object) {
+        return GSONStorageManager.setObject(_context, false, _tag, _object, _classType);
+    }
+
+
+    /**
+     * Allows to _save_ ASYNCHRONOUSLY the model into local SharedPreferences
+     *
+     * @param _context
+     * @param _tag
+     * @param _classType
+     * @param _object
+     * @return
+     */
+    public static boolean saveAsync(Context _context, final String _tag, final Type _classType, Object _object) {
         return GSONStorageManager.setObject(_context, true, _tag, _object, _classType);
     }
 

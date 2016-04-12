@@ -2,14 +2,14 @@ package com.cremy.greenrobotutils.library.permission;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 
 /**
  * Inherit from this activity allows to handle easily the new Marshmallow permission grant and deny
  * process.
  * @author remychantenay
  */
-public class PermissionActivity extends AppCompatActivity {
+public class PermissionFragmentActivity extends FragmentActivity {
 
 
 
