@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">Library</string>
 
+
+    <string name="green_robot_utils_general_yes">Yes</string>
+    <string name="green_robot_utils_general_no">No</string>
+    <string name="green_robot_utils_general_more">More</string>
+    <string name="green_robot_utils_general_share">Share</string>
+    <string name="green_robot_utils_general_close">Close</string>
+    <string name="green_robot_utils_general_remove">Remove</string>
+
+
+    <!--Buttons-->
+    <string name="green_robot_utils_button_cancel">CANCEL</string>
+    <string name="green_robot_utils_button_ok">OK</string>
+    <string name="green_robot_utils_button_next">NEXT</string>
+    <string name="green_robot_utils_button_done">DONE</string>
+    <string name="green_robot_utils_button_clear">CLEAR</string>
 </resources>
