@@ -11,14 +11,14 @@ import android.widget.TextView;
  * @link http://developer.android.com/reference/android/support/design/widget/TabLayout.html
  * @author remychantenay
  */
-public final class TabLayoutUtil {
+public final class TabLayoutUtils {
 
     /**
      * Allows to change the font of the tabs of a given TabLayout
      * @param _tabLayout
      * @param _typeface
      */
-    public static void changeTabsFont(TabLayout _tabLayout, Typeface _typeface) {
+    public static void setCustomFont(TabLayout _tabLayout, Typeface _typeface) {
 
         ViewGroup vg = (ViewGroup) _tabLayout.getChildAt(0);
         int tabsCount = vg.getChildCount();
@@ -36,5 +36,4 @@ public final class TabLayoutUtil {
             }
         }
     }
-
 }
