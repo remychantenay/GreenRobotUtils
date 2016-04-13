@@ -20,6 +20,7 @@
     <!--Toolbar-->
     <dimen name="material_design_toolbar_height">56dp</dimen>
     <dimen name="material_design_toolbar_height_extended">112dp</dimen>
+    <dimen name="material_design_toolbar_elevation">4dp</dimen>
 
     <!--TabLayout-->
     <dimen name="material_design_tablayout_height">48dp</dimen>
