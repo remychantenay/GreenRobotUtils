@@ -11,7 +11,8 @@
     <dimen name="material_design_keyline_four">2dp</dimen>
 
     <!--FloatingActionButton-->
-    <dimen name="material_design_fab_elevation">8dp</dimen>
+    <dimen name="material_design_fab_elevation">6dp</dimen>
+    <dimen name="material_design_fab_elevation_state_pressed">12dp</dimen>
     <dimen name="material_design_fab_elevation_mini">4dp</dimen>
     <dimen name="material_design_fab_size_mini">40dp</dimen>
     <dimen name="material_design_fab_size_normal">56dp</dimen>
@@ -26,8 +27,11 @@
     <!--SnackBar-->
     <dimen name="material_design_snackbar_height">48dp</dimen>
     <dimen name="material_design_snackbar_sides_padding">24dp</dimen>
+    <dimen name="material_design_snackbar_elevation">6dp</dimen>
 
     <!--CardView-->
+    <dimen name="material_design_cardview_elevation_state_picked">8dp</dimen>
+    <dimen name="material_design_cardview_elevation">2dp</dimen>
     <dimen name="material_design_cardview_corner_radius">2dp</dimen>
 
     <!--NavigationDrawer-->
@@ -37,4 +41,7 @@
     <!--ListView-->
     <dimen name="material_design_listview_item_height">56dp</dimen>
     <dimen name="material_design_listview_item_height_extended">72dp</dimen><!-- For items with two line of text -->
+
+    <!--Switch-->
+    <dimen name="material_design_switch_elevation">1dp</dimen>
 </resources>
