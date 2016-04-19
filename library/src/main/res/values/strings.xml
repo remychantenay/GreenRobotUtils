@@ -16,4 +16,7 @@
     <string name="green_robot_utils_button_next">NEXT</string>
     <string name="green_robot_utils_button_done">DONE</string>
     <string name="green_robot_utils_button_clear">CLEAR</string>
+
+    <!--Intents -->
+    <string name="green_robot_utils_intent_mail_title">Send mail</string>
 </resources>
