@@ -28,6 +28,20 @@ public class GreenRobotNotificationCompat {
     public GreenRobotNotificationCompat() {}
 
 
+    /**
+     *
+     * @param _id
+     * @param _title
+     * @param _content
+     * @param _intent
+     * @param _drawableForStatusBar
+     * @param _drawableForNotification
+     * @param _drawableForWearBackgroundNotification (must bit a 320*320 LIGHTWEIGHT jpeg)
+     * @param _largeIcon
+     * @param _actions
+     * @param _onGoingNotification
+     * @param _context
+     */
     public GreenRobotNotificationCompat(int _id,
                                         final String _title,
                                         final String _content,
@@ -51,7 +65,7 @@ public class GreenRobotNotificationCompat {
         PendingIntent pi=PendingIntent.getActivity(_context, 2, _intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 
-        // 2. Creating the Wear specific extender
+        // 2. Creating the Wear specific
         NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender()
                 .setHintShowBackgroundOnly(false)
                 .setBackground(_largeIcon==null?BitmapFactory.decodeResource(_context.getResources(), _drawableForWearBackgroundNotification): _largeIcon);
