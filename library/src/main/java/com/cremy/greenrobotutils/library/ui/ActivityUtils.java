@@ -1,10 +1,18 @@
 package com.cremy.greenrobotutils.library.ui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.cremy.greenrobotutils.library.R;
 
 /**
  * Created by remychantenay on 22/04/2016.
@@ -95,5 +103,52 @@ public final class ActivityUtils {
      */
     public static void setResizableContentWhenKeyboardAppear(Activity _activity) {
         _activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    }
+
+
+    /**
+     * Allows to change the toolbar back arrow and set a WHITE one
+     * @param _context
+     * @param _actionBar
+     */
+    public static void setToolbarCustomWhiteBackArrow(Context _context, ActionBar _actionBar) {
+        _actionBar.setDisplayHomeAsUpEnabled(true);
+        final Drawable upArrow = _context.getResources().getDrawable(R.drawable.ic_action_back_arrow_white);
+        _actionBar.setHomeAsUpIndicator(upArrow);
+    }
+
+    /**
+     * Allows to change the toolbar back arrow and set a BLACK one
+     * @param _context
+     * @param _actionBar
+     */
+    public static void setToolbarCustomBlackBackArrow(Context _context, ActionBar _actionBar) {
+        _actionBar.setDisplayHomeAsUpEnabled(true);
+        final Drawable upArrow = _context.getResources().getDrawable(R.drawable.ic_action_back_arrow_black);
+        _actionBar.setHomeAsUpIndicator(upArrow);
+    }
+
+
+    /**
+     * Allows to change the toolbar hamburger/drawer menu icon to a WHITE one
+     * @param _context
+     * @param _actionBarDrawerToggle
+     */
+    public static void setToolbarCustomWhiteMenuIcon(Context _context, ActionBarDrawerToggle _actionBarDrawerToggle) {
+        _actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        _actionBarDrawerToggle.setHomeAsUpIndicator(_context.getResources().getDrawable(R.drawable.ic_menu_white_24dp));
+    }
+
+
+    /**
+     * Allows to apply a fragment into a container view (view a given view id, e.g R.id.container)
+     * @param _activity
+     * @param _fragment
+     * @param _idView
+     */
+    public static void applyFragment(FragmentActivity _activity, Fragment _fragment, int _idView)
+    {
+        android.support.v4.app.FragmentManager fragmentManager = _activity.getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(_idView, _fragment).commit();
     }
 }
