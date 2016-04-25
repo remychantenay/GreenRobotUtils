@@ -32,8 +32,10 @@ public final class RecyclerViewUtils {
      * @param _itemView
      * @param _dX
      * @param _canvas
+     *
+     * @return The paint object
      */
-    public static void drawRectOnSwipe(View _itemView,
+    public static Paint drawRectOnSwipe(View _itemView,
                                        Canvas _canvas,
                                        final int _color,
                                        final float _dX) {
@@ -50,6 +52,8 @@ public final class RecyclerViewUtils {
             _canvas.drawRect((float) _itemView.getRight() + _dX, (float) _itemView.getTop(),
                     (float) _itemView.getRight(), (float) _itemView.getBottom(), p);
         }
+
+        return p;
     }
 
 
@@ -60,8 +64,10 @@ public final class RecyclerViewUtils {
      * @param _res
      * @param _resId
      * @param _paint
+     *
+     * @return The paint object
      */
-    public static void drawBitmap(View _itemView,
+    public static Paint drawBitmap(View _itemView,
                                   Canvas _canvas,
                                   Resources _res,
                                   final int _resId,
@@ -77,5 +83,7 @@ public final class RecyclerViewUtils {
 
         // 3. Drawing a resource bitmap
         _canvas.drawBitmap(bitmap, 25, positionTop, _paint);
+
+        return _paint;
     }
 }
