@@ -26,7 +26,7 @@ public abstract class SwipeableActivity extends AppCompatActivity {
     /** Runnable that will check if data are loaded or not
      *
      */
-    private final Runnable refreshingRunnable = new Runnable(){
+    public final Runnable refreshingRunnable = new Runnable(){
         public void run(){
             try {
                 if(isRefreshing){
