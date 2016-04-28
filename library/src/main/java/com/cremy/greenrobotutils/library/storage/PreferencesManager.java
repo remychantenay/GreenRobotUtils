@@ -11,7 +11,7 @@ public class PreferencesManager {
 
     //region Int
     /**
-     * Allows to _set_ an Int value into the SharedPreferences.
+     * Allows to _set_ an Int value into the SharedPreferences
      * @param _context
      * @param _isAsync -> if true, the returned value will be true as the writing is not synchronous
      * @param _key
