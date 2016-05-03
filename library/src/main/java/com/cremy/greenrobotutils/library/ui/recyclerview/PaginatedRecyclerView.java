@@ -26,12 +26,14 @@ public final class PaginatedRecyclerView extends RecyclerView {
 
     //region Callback interface
     public interface IPaginatedRecyclerView {
+        void setUpRecyclerView(IPaginatedRecyclerView _callback, final int _itemCount);
         void OnNewPageNeeded();
+        void newPageReceived(final int _itemCount);
     }
     //endregion
 
     private boolean isPaginationEnabled = true;
-    private int itemPerPage = 0;
+    private int itemCount = 0;
     private boolean isLoadingNewPage = false;
     private IPaginatedRecyclerView callback = null;
 
@@ -131,7 +133,7 @@ public final class PaginatedRecyclerView extends RecyclerView {
                     if (firstVisibleItemPositionCount==1) {
                         if ((visibleItemCount + firstVisibleItemPositions[0]) >= totalItemCount
                                 && firstVisibleItemPositions[0] >= 0
-                                && totalItemCount >= itemPerPage) {
+                                && totalItemCount >= itemCount) {
                             askNewPage();
                         }
                     }
@@ -140,7 +142,7 @@ public final class PaginatedRecyclerView extends RecyclerView {
                         for (int i = 0; i < firstVisibleItemPositionCount; i++) {
                             if ((visibleItemCount + firstVisibleItemPositions[i]) >= totalItemCount
                                     && firstVisibleItemPositions[i] >= 0
-                                    && totalItemCount >= itemPerPage) {
+                                    && totalItemCount >= itemCount) {
                                 askNewPage();
                                 break;
                             }
@@ -158,17 +160,17 @@ public final class PaginatedRecyclerView extends RecyclerView {
     }
 
 
-    public void setItemPerPage(int itemPerPage) {
-        this.itemPerPage = itemPerPage;
+    public void newPageReceived(final int _itemCount) {
+        isLoadingNewPage = false;
+        this.itemCount = (this.itemCount +_itemCount);
     }
 
-    public void setLoadingNewPage(boolean loadingNewPage) {
-        isLoadingNewPage = loadingNewPage;
-    }
-
-    public void setCallback(IPaginatedRecyclerView _callback) {
+    public void setUpRecyclerView(IPaginatedRecyclerView _callback,
+                                  final int _itemCount) {
         this.callback = _callback;
+        this.itemCount = _itemCount;
     }
+
 
     public void setPaginationEnabled(boolean paginationEnabled) {
         isPaginationEnabled = paginationEnabled;
