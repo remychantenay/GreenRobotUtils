@@ -16,11 +16,19 @@ public final class LoaderUtils {
      * @param _id
      * @param _args
      * @param _callback
+     * @param _forceLoad
      */
     public static void initOrReconnectLoader(AppCompatActivity _activity,
                                       final int _id,
                                       Bundle _args,
-                                      LoaderManager.LoaderCallbacks _callback) {
-        _activity.getSupportLoaderManager().initLoader(_id, _args, _callback).forceLoad();
+                                      LoaderManager.LoaderCallbacks _callback,
+                                      boolean _forceLoad) {
+
+        if (_forceLoad) {
+            _activity.getSupportLoaderManager().initLoader(_id, _args, _callback).forceLoad();
+        } else {
+            _activity.getSupportLoaderManager().initLoader(_id, _args, _callback);
+        }
+
     }
 }
