@@ -156,7 +156,9 @@ public final class PaginatedRecyclerView extends RecyclerView {
 
     private void askNewPage() {
         this.isLoadingNewPage = true;
-        this.callback.OnNewPageNeeded();
+        if (this.callback!=null) {
+            this.callback.OnNewPageNeeded();
+        }
     }
 
 
@@ -165,6 +167,12 @@ public final class PaginatedRecyclerView extends RecyclerView {
         this.itemCount = (this.itemCount +_itemCount);
     }
 
+
+    /**
+     * Allows to setUp the recyclerview giving the callback and the initial item count
+     * @param _callback
+     * @param _itemCount
+     */
     public void setUpRecyclerView(IPaginatedRecyclerView _callback,
                                   final int _itemCount) {
         this.callback = _callback;
