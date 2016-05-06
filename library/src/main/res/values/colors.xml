@@ -4,4 +4,7 @@
     <color name="gru_google_logo_red">#F90101</color>
     <color name="gru_google_logo_yellow">#F2B50F</color>
     <color name="gru_google_logo_green">#00933B</color>
+
+
+    <color name="gru_default_ripple_drawable_color">#e5e5e5</color> <!--Grey-->
 </resources>
