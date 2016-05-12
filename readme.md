@@ -5,6 +5,8 @@ Android library allowing me to make my life easier and awesome :)
 
 ## Download
 
+This project is hosted on jitpack.
+
 In your _project_ build.gradle:
 
 ```groovy
