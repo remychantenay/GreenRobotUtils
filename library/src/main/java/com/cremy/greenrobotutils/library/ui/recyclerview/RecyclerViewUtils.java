@@ -86,4 +86,22 @@ public final class RecyclerViewUtils {
 
         return _paint;
     }
+
+
+    /**
+     * Allows to change the alpha value of the swiped item (based on the item width and
+     * the X value
+     * @param _itemView
+     * @param _dX
+     */
+    public static void setItemViewSwipeAlphaValue(View _itemView,
+                                                  float _dX) {
+        if (_itemView==null) {
+            throw new NullPointerException("RecyclerView.ViewHolder.itemView provided is NULL");
+        }
+
+        float width = (float) _itemView.getWidth();
+        float alpha = 1.0f - Math.abs(_dX) / width;
+        _itemView.setAlpha(alpha);
+    }
 }
