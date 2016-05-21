@@ -2,6 +2,7 @@ package com.cremy.greenrobotutils.library.ui;
 
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v4.graphics.ColorUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -78,5 +79,30 @@ public final class StatusBarUtils {
             int uiOptions = View.SYSTEM_UI_FLAG_VISIBLE;
             decorView.setSystemUiVisibility(uiOptions);
         }
+    }
+
+    /**
+     * Allows to set the light status bar
+     * NOTE : Only available from API 23 (Marshmallow)
+     * @param _view
+     */
+    public void setLightStatusBar(View _view) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            int flags = _view.getSystemUiVisibility();
+            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            _view.setSystemUiVisibility(flags);
+        }
+    }
+
+    /**
+     * Allows to know if a given color is light or not
+     * Useful if we want to know if we should apply the light status bar or not
+     * @param _color
+     * @return true if the given _color is light, false otherwise
+     */
+    public boolean isLight(int _color) {
+        float[] hsl = new float[3];
+        ColorUtils.colorToHSL(_color, hsl);
+        return hsl[0] > 0.5f;
     }
 }
