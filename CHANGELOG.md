@@ -1,8 +1,9 @@
 # Change Log
 
-## Version 1.0.5 (COMING)
+## Version 1.0.5 (2016-05-21)
 * StatusBarUtils.setLightStatusBar(View _view) added to apply a light status bar (>= Marshmallow)
 * StatusBarUtils.isLight(int _color) added, allows to know if a given color is light or not
+* FloatingActionButtonUtils.setFabBackgroundColor(FloatingActionButton _fab, int _color) added
 
 ## Version 1.0.4 (2016-05-20)
 * SquareImageView added for easier ImageView's inside GridViews
