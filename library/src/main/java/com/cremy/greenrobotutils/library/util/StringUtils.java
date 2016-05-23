@@ -163,4 +163,19 @@ public class StringUtils {
 
         return strValue;
     }
+
+    /**
+     * Allows to transform a given String setting every character in lower case except the first one
+     * e.g. HELLO -> Hello
+     * e.g. hELLO -> Hello
+     * ...
+     * @param _string
+     * @return
+     */
+    public static String toLowerCaseExceptFirstChar(String _string) {
+        char c[] = _string.toLowerCase().toCharArray();
+        c[0] = Character.toUpperCase(c[0]);
+        _string = String.copyValueOf(c);
+        return _string;
+    }
 }
