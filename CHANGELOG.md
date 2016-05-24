@@ -1,7 +1,9 @@
 # Change Log
 
-## Version 1.0.6 (COMING)
+## Version 1.0.6 (2016-05-24)
 * StringUtils.toLowerCaseExceptFirstChar(String _string)
+* Replace gradle compile by provided for libraries
+* Support libraries updated to 23.3.0
 
 ## Version 1.0.5 (2016-05-21)
 * StatusBarUtils.setLightStatusBar(View _view) added to apply a light status bar (>= Marshmallow)

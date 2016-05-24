@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 23
-        versionCode 1005
-        versionName "1.0.5"
+        versionCode 1006
+        versionName "1.0.6"
 
         // Specifying proguard rules for this library
         //consumerProguardFiles = 'proguard-rules.pro'
@@ -25,16 +25,15 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
 
     //region GSON
-    compile 'com.google.code.gson:gson:2.4'
+    provided 'com.google.code.gson:gson:2.4'
     //endregion
 
     //region Support Library
-    final SUPPORT_LIBRARY_VERSION = '23.2.1'
-    compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
-    compile "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
+    final SUPPORT_LIBRARY_VERSION = '23.3.0'
+    provided "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+    provided "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+    provided "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
     //endregion
 }
