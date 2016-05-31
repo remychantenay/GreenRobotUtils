@@ -1,5 +1,8 @@
 # Change Log
 
+## Version 1.0.7 (2016-05-31)
+* KeyboardUtils added
+
 ## Version 1.0.6 (2016-05-24)
 * StringUtils.toLowerCaseExceptFirstChar(String _string)
 * Replace gradle compile by provided for libraries
