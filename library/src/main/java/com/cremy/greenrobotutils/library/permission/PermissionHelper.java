@@ -16,6 +16,7 @@ public final class PermissionHelper {
     public final static int REQUEST_CODE_PERMISSION_GET_ACCOUNTS = 143;
     public final static int REQUEST_CODE_PERMISSION_READ_PHONE_STATE = 144;
     public final static int REQUEST_CODE_PERMISSION_WRITE_EXTERNAL_STORAGE = 145;
+    public final static int REQUEST_CODE_PERMISSION_RECORD_AUDIO = 146;
 
     // Manifest.permission.CAMERA
     public static final String CAMERA = "android.permission.CAMERA";
@@ -25,7 +26,8 @@ public final class PermissionHelper {
     public static final String READ_PHONE_STATE = "android.permission.READ_PHONE_STATE";
     // Manifest.permission.WRITE_EXTERNAL_STORAGE
     public static final String WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE";
-
+    // Manifest.permission.RECORD_AUDIO
+    public static final String RECORD_AUDIO = "android.permission.RECORD_AUDIO";
 
     /**
      * Allows to check if the current version is at least Marshmallow,
@@ -91,6 +93,19 @@ public final class PermissionHelper {
         return (ContextCompat.checkSelfPermission(_context, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
+    /**
+     * Allows to know if the RECORD_AUDIO permission is granted or not
+     * @param _context
+     * @return true if granted, false otherwise
+     */
+    public static boolean isRecordAudioPermissionGranted(Context _context) {
+
+        if (!isMarshmallowOrAbove()) {
+            return true;
+        }
+        return (ContextCompat.checkSelfPermission(_context, RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED);
+    }
+
 
 
     /**
@@ -124,5 +139,14 @@ public final class PermissionHelper {
     public static void requestWriteExternalStoragePermission(Activity _activity) {
 
         ActivityCompat.requestPermissions(_activity, new String[]{WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION_WRITE_EXTERNAL_STORAGE);
+    }
+
+    /**
+     * Allows to ask for the RECORD_AUDIO permission
+     * @param _activity
+     */
+    public static void requestRecordAudioPermission(Activity _activity) {
+
+        ActivityCompat.requestPermissions(_activity, new String[]{RECORD_AUDIO}, REQUEST_CODE_PERMISSION_RECORD_AUDIO);
     }
 }
