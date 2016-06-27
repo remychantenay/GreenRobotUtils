@@ -1,5 +1,8 @@
 # Change Log
 
+## Version 1.0.8 (2016-06-27)
+* ActivityUtils#addFragment and ActivityUtils#getFragmentByTag added
+
 ## Version 1.0.8 (2016-06-23)
 * RECORD_AUDIO permission added to PermissionHelper
 

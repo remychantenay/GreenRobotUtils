@@ -151,4 +151,31 @@ public final class ActivityUtils {
         android.support.v4.app.FragmentManager fragmentManager = _activity.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(_idView, _fragment).commit();
     }
+
+    /**
+     * Allows to add a fragment into a container view (view a given view id, e.g R.id.container)
+     * @param _activity
+     * @param _fragment
+     * @param _idView
+     * @param _fragmentTag
+     */
+    public static void addFragment(FragmentActivity _activity,
+                                   Fragment _fragment,
+                                   int _idView,
+                                   String _fragmentTag)
+    {
+        android.support.v4.app.FragmentManager fragmentManager = _activity.getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(_idView, _fragment, _fragmentTag).commit();
+    }
+
+    /**
+     * Allows to get a fragment with a given tag
+     * @param _activity
+     * @param _fragmentTag
+     */
+    public static Fragment getFragmentByTag(FragmentActivity _activity, String _fragmentTag)
+    {
+        android.support.v4.app.FragmentManager fragmentManager = _activity.getSupportFragmentManager();
+        return fragmentManager.findFragmentByTag(_fragmentTag);
+    }
 }
