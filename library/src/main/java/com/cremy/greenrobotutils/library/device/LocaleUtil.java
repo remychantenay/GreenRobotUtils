@@ -11,13 +11,7 @@ import android.content.Context;
  *
  */
 public final class LocaleUtil {
-	public final static String TAG = "LocaleUtil";
-	
-	private final static String FR = "fr";
-	private final static String EN = "en";
-	private final static String FRA = "FRA";
-	private final static String ENG = "ENG";
-	
+
 	/**
 	 * Allows to get the locale of the device
 	 * (e.g. en_GB)

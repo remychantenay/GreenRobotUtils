@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
@@ -149,7 +150,7 @@ public final class ActivityUtils {
     public static void applyFragment(FragmentActivity _activity, Fragment _fragment, int _idView)
     {
         android.support.v4.app.FragmentManager fragmentManager = _activity.getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(_idView, _fragment).commit();
+        fragmentManager.beginTransaction().replace(_idView, _fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
     }
 
     /**
