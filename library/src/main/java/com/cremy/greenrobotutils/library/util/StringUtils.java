@@ -117,11 +117,12 @@ public class StringUtils {
 
 
     /**
-     * Allows to get separate a given numeric value with comma:
-     * e.g
-     * (1000 -> 1,000)
-     * (10000 -> 10,000)
-     * (100000 -> 100,000)
+     * Allows to get a comma separated String from a given numeric value
+     * e.g.
+     * 1000 -> 1,000
+     * 10000 -> 10,000
+     * 100000 -> 100,000
+     * 1000000 -> 1,000,000
      * @return
      */
     public static String separateNumericValueWithComma(final int _val) {
@@ -129,31 +130,32 @@ public class StringUtils {
 
         try {
             strValue = String.valueOf(_val);
-            if (strValue.length() == 9) {
+            final int strLength = strValue.length();
+            if (strLength == 9) {
                 strValue = strValue.substring(0, 3) + "," + strValue.substring(3, strValue.length());
                 strValue = strValue.substring(0, 7) + "," + strValue.substring(7, strValue.length());
                 return strValue;
             }
 
-            if (strValue.length() == 8) {
+            if (strLength == 8) {
                 strValue = strValue.substring(0, 2) + "," + strValue.substring(2, strValue.length());
                 strValue = strValue.substring(0, 6) + "," + strValue.substring(6, strValue.length());
                 return strValue;
             }
-            if (strValue.length() == 7) {
+            if (strLength == 7) {
                 strValue = strValue.substring(0, 1) + "," + strValue.substring(1, strValue.length());
                 strValue = strValue.substring(0, 5) + "," + strValue.substring(5, strValue.length());
                 return strValue;
             }
-            if (strValue.length() == 6) {
+            if (strLength == 6) {
                 strValue = strValue.substring(0, 3) + "," + strValue.substring(3, strValue.length());
                 return strValue;
             }
-            if (strValue.length() == 5) {
+            if (strLength == 5) {
                 strValue = strValue.substring(0, 2) + "," + strValue.substring(2, strValue.length());
                 return strValue;
             }
-            if (strValue.length() == 4) {
+            if (strLength == 4) {
                 strValue = strValue.substring(0, 1) + "," + strValue.substring(1, strValue.length());
                 return strValue;
             }
