@@ -1,5 +1,8 @@
 # Change Log
 
+## Version 1.1.1 (2016-07-12)
+* DateUtil added
+
 ## Version 1.1.0 (2016-07-02)
 * Shake, Nope and Loading Animation factories added
 

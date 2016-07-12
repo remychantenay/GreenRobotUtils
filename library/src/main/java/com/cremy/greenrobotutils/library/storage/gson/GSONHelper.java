@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 /**
  * GSONHelper
  *
- * This class allows to save JSON formatted data really easily using the SharedPreferences
+ * This class allows to save JSON formatted data within SharedPreferences
  * Created by remychantenay on 11/04/2016.
  */
 public final class GSONHelper {
@@ -18,7 +18,6 @@ public final class GSONHelper {
      */
     public static Gson getInstance() {
         if (GSON_INSTANCE ==null) {
-            //GSON_INSTANCE = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             GSON_INSTANCE = new Gson();
         }
 
