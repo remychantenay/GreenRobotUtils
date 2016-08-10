@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 1.1.2 (2016-08-10)
+* FingerprintHelper added
+* USE_FINGERPRINT permission added to PermissionHelper
+
 ## Version 1.1.1 (2016-07-12)
 * DateUtil added
 
