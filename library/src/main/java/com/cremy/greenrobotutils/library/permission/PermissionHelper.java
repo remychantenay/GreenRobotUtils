@@ -17,6 +17,7 @@ public final class PermissionHelper {
     public final static int REQUEST_CODE_PERMISSION_READ_PHONE_STATE = 144;
     public final static int REQUEST_CODE_PERMISSION_WRITE_EXTERNAL_STORAGE = 145;
     public final static int REQUEST_CODE_PERMISSION_RECORD_AUDIO = 146;
+    public final static int REQUEST_CODE_PERMISSION_USE_FINGERPRINT = 147;
 
     // Manifest.permission.CAMERA
     public static final String CAMERA = "android.permission.CAMERA";
@@ -28,6 +29,8 @@ public final class PermissionHelper {
     public static final String WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE";
     // Manifest.permission.RECORD_AUDIO
     public static final String RECORD_AUDIO = "android.permission.RECORD_AUDIO";
+    // Manifest.permission.RECORD_AUDIO
+    public static final String USE_FINGERPRINT = "android.permission.USE_FINGERPRINT";
 
     /**
      * Allows to check if the current version is at least Marshmallow,
@@ -106,6 +109,19 @@ public final class PermissionHelper {
         return (ContextCompat.checkSelfPermission(_context, RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED);
     }
 
+    /**
+     * Allows to know if the USE_FINGERPRINT permission is granted or not
+     * @param _context
+     * @return true if granted, false otherwise
+     */
+    public static boolean isUseFingerprintPermissionGranted(Context _context) {
+
+        if (!isMarshmallowOrAbove()) {
+            return true;
+        }
+        return (ContextCompat.checkSelfPermission(_context, USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED);
+    }
+
 
 
     /**
@@ -148,5 +164,14 @@ public final class PermissionHelper {
     public static void requestRecordAudioPermission(Activity _activity) {
 
         ActivityCompat.requestPermissions(_activity, new String[]{RECORD_AUDIO}, REQUEST_CODE_PERMISSION_RECORD_AUDIO);
+    }
+
+    /**
+     * Allows to ask for the USE_FINGERPRINT permission
+     * @param _activity
+     */
+    public static void requestUseFingerprintPermission(Activity _activity) {
+
+        ActivityCompat.requestPermissions(_activity, new String[]{USE_FINGERPRINT}, REQUEST_CODE_PERMISSION_USE_FINGERPRINT);
     }
 }
