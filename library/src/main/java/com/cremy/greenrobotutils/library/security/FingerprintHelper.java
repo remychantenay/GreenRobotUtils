@@ -99,7 +99,7 @@ public class FingerprintHelper extends FingerprintManager.AuthenticationCallback
      * FingerprintHelper.RESULT_CODE_ERR_NO_FINGERPRINTS_ENROLLED
      *
      */
-    public int getDeviceState(Context context) {
+    private int getDeviceState(Context context) {
         if (!PermissionHelper.isUseFingerprintPermissionGranted(context)) {
             return RESULT_CODE_ERR_PERMISSION_NOT_GRANTED;
         }
