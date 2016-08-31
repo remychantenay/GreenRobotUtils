@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
  * process.
  * @author remychantenay
  */
-public class PermissionActivity extends AppCompatActivity {
+public abstract class PermissionActivity extends AppCompatActivity {
 
 
     @Override
@@ -22,27 +22,23 @@ public class PermissionActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         // If request is cancelled, the result arrays are empty.
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            this.permissionGranted(requestCode);
+            this.onPermissionGranted(requestCode);
         } else {
-            this.permissionDenied(requestCode);
+            this.onPermissionDenied(requestCode);
         }
         return;
     }
 
     /**
-     * This method will be triggered if the permission asked is GRANTED
+     * This callback will be triggered if the asked permission is GRANTED
      * @param _requestCode
      */
-    public void permissionGranted(int _requestCode) {
-        // To Override
-    }
+    public abstract void onPermissionGranted(int _requestCode);
 
     /**
-     * This method will be triggered if the permission asked is DENIED
+     * This callback will be triggered if the asked permission is DENIED
      * @param _requestCode
      */
-    public void permissionDenied(int _requestCode) {
-        // To Override
-    }
+    public abstract void onPermissionDenied(int _requestCode);
 
 }
