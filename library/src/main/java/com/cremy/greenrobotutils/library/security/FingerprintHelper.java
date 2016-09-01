@@ -26,16 +26,15 @@ public class FingerprintHelper extends FingerprintManager.AuthenticationCallback
     public final static int RESULT_CODE_ERR_NO_FINGERPRINTS_ENROLLED = 2;
     public final static int RESULT_CODE_ERR_PERMISSION_NOT_GRANTED = 3;
 
-    private FingerprintManager mFingerprintManager;
-    private Callback mCallback;
-    private CancellationSignal mCancellationSignal;
-    @VisibleForTesting
-    boolean mSelfCancelled;
+    private FingerprintManager fingerprintManager;
+    private Callback callback;
+    private CancellationSignal cancellationSignal;
+    @VisibleForTesting boolean selfCancelled;
 
     public FingerprintHelper(FingerprintManager fingerprintManager,
                              Callback callback) {
-        this.mCallback = callback;
-        this.mFingerprintManager = fingerprintManager;
+        this.callback = callback;
+        this.fingerprintManager = fingerprintManager;
     }
 
     public int startListening(Context context,
@@ -45,49 +44,49 @@ public class FingerprintHelper extends FingerprintManager.AuthenticationCallback
             return state;
         }
 
-        mCancellationSignal = new CancellationSignal();
-        mSelfCancelled = false;
-        mFingerprintManager
-                .authenticate(cryptoObject, mCancellationSignal, 0 /* flags */, this, null);
+        cancellationSignal = new CancellationSignal();
+        selfCancelled = false;
+        fingerprintManager
+                .authenticate(cryptoObject, cancellationSignal, 0 /* flags */, this, null);
 
         return RESULT_CODE_SUCCESS_LISTENING;
     }
 
     public void stopListening() {
-        if (mCancellationSignal != null) {
-            mSelfCancelled = true;
-            mCancellationSignal.cancel();
-            mCancellationSignal = null;
+        if (cancellationSignal != null) {
+            selfCancelled = true;
+            cancellationSignal.cancel();
+            cancellationSignal = null;
         }
     }
 
     @Override
     public void onAuthenticationError(int errMsgId, CharSequence errString) {
-        if (!mSelfCancelled) {
-            if (mCallback!=null) {
-                mCallback.onError(errMsgId, errString);
+        if (!selfCancelled) {
+            if (callback !=null) {
+                callback.onError(errMsgId, errString);
             }
         }
     }
 
     @Override
     public void onAuthenticationHelp(int helpMsgId, CharSequence helpString) {
-        if (mCallback!=null) {
-            mCallback.onHelp(helpMsgId, helpString);
+        if (callback !=null) {
+            callback.onHelp(helpMsgId, helpString);
         }
     }
 
     @Override
     public void onAuthenticationFailed() {
-        if (mCallback!=null) {
-            mCallback.onNotRecognized();
+        if (callback !=null) {
+            callback.onNotRecognized();
         }
     }
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
-        if (mCallback!=null) {
-            mCallback.onAuthenticated();
+        if (callback !=null) {
+            callback.onAuthenticated();
         }
     }
 
@@ -103,10 +102,10 @@ public class FingerprintHelper extends FingerprintManager.AuthenticationCallback
         if (!PermissionHelper.isUseFingerprintPermissionGranted(context)) {
             return RESULT_CODE_ERR_PERMISSION_NOT_GRANTED;
         }
-        if (!this.mFingerprintManager.isHardwareDetected()) {
+        if (!this.fingerprintManager.isHardwareDetected()) {
             return RESULT_CODE_ERR_HARDWARE_NOT_COMPATIBLE;
         }
-        if (!this.mFingerprintManager.hasEnrolledFingerprints()) {
+        if (!this.fingerprintManager.hasEnrolledFingerprints()) {
             return RESULT_CODE_ERR_NO_FINGERPRINTS_ENROLLED;
         }
 

@@ -1,5 +1,11 @@
 # Change Log
 
+
+## Version 1.1.3 (2016-09-01)
+* PermissionActivity code refactoring.
+* FingerprintHelper code refactoring.
+* KeyStoreHelper added.
+
 ## Version 1.1.2 (2016-08-10)
 * FingerprintHelper added
 * USE_FINGERPRINT permission added to PermissionHelper
