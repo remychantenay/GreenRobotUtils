@@ -21,6 +21,6 @@ In your _module_ build.gradle:
 
 ```groovy
 dependencies {
-    compile 'com.github.remychantenay:greenrobotutils:1.1.3'
+    compile 'com.github.remychantenay:greenrobotutils:1.1.4'
     }
 ```

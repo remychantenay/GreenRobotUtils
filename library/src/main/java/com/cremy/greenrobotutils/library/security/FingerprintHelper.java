@@ -113,6 +113,21 @@ public class FingerprintHelper extends FingerprintManager.AuthenticationCallback
     }
 
 
+    public static boolean isDeviceFingerprintReady(Context context,
+                                                   FingerprintManager fingerprintManager) {
+        if (!PermissionHelper.isUseFingerprintPermissionGranted(context)) {
+            return false;
+        }
+        if (!fingerprintManager.isHardwareDetected()) {
+            return false;
+        }
+        if (!fingerprintManager.hasEnrolledFingerprints()) {
+            return false;
+        }
+
+        return true;
+    }
+
 
 
     public interface Callback {

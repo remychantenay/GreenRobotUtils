@@ -1,9 +1,11 @@
 # Change Log
 
+## Version 1.1.4 (2016-09-05)
+* FingerprintHelper#isDeviceFingerprintReady() method added
 
 ## Version 1.1.3 (2016-09-01)
-* PermissionActivity code refactoring.
-* FingerprintHelper code refactoring.
+* PermissionActivity code refactoring
+* FingerprintHelper code refactoring
 * KeyStoreHelper added.
 
 ## Version 1.1.2 (2016-08-10)

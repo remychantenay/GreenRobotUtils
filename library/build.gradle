@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 23
-        versionCode 1013
-        versionName "1.1.3"
+        versionCode 1014
+        versionName "1.1.4"
 
         // Specifying proguard rules for this library
         //consumerProguardFiles = 'proguard-rules.pro'
