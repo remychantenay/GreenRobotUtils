@@ -1,5 +1,5 @@
 # GreenRobotUtils
-Android library allowing me to make my life easier and awesome :)
+Just another Android library ;)
 
 [![Release](https://jitpack.io/v/remychantenay/GreenRobotUtils.svg)](https://jitpack.io/v/#remychantenay/GreenRobotUtils.svg)
 
@@ -21,6 +21,6 @@ In your _module_ build.gradle:
 
 ```groovy
 dependencies {
-    compile 'com.github.remychantenay:greenrobotutils:1.1.4'
+    compile 'com.github.remychantenay:greenrobotutils:1.1.5'
     }
 ```

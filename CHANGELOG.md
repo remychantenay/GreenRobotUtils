@@ -1,5 +1,8 @@
 # Change Log
 
+## Version 1.1.5 (2017-02-21)
+* New methods to encrypt/decrypt easily on KeyStoreHelper.java
+
 ## Version 1.1.4 (2016-09-05)
 * FingerprintHelper#isDeviceFingerprintReady() method added
 
