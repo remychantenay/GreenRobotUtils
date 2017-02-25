@@ -9,28 +9,24 @@ import android.util.AttributeSet;
 
 
 /**
- * This is a inherited class from RecyclerView handling pagination
+ * This is a inherited class from RecyclerView
+ * The role is to handle pagination
  * Compatible with: LinearLayoutManager, GridLayoutManager and StaggeredGridLayoutManager
  * http://developer.android.com/reference/android/support/v7/widget/StaggeredGridLayoutManager.html
  */
 public final class PaginatedRecyclerView extends RecyclerView {
-    private final static String TAG = "PaginatedRecyclerView";
 
-    //region LayoutManager types
     private final static int LAYOUT_MANAGER_LINEAR = 0;
     private final static int LAYOUT_MANAGER_GRID = 1;
     private final static int LAYOUT_MANAGER_STAGGERED_GRID = 2;
 
     private int currentLayoutManager = LAYOUT_MANAGER_LINEAR;
-    //endregion
 
-    //region Callback interface
     public interface IPaginatedRecyclerView {
         void setUpRecyclerView(IPaginatedRecyclerView _callback, final int _itemCount);
-        void OnNewPageNeeded();
-        void newPageReceived(final int _itemCount);
+        void onNewPageNeeded();
+        void onNewPageReceived(final int itemCount);
     }
-    //endregion
 
     private boolean isPaginationEnabled = true;
     private int itemCount = 0;
@@ -57,35 +53,35 @@ public final class PaginatedRecyclerView extends RecyclerView {
 
     /**
      * Allows to change the layout manager to LinearLayout
-     * @param _context
+     * @param context
      */
-    public void setLinearLayoutManager(Context _context) {
+    public void setLinearLayoutManager(Context context) {
         this.currentLayoutManager = LAYOUT_MANAGER_LINEAR;
-        this.setLayoutManager(new LinearLayoutManager(_context));
+        this.setLayoutManager(new LinearLayoutManager(context));
     }
 
     /**
      * Allows to change the layout manager to GridLayout
-     * @param _context
-     * @param _spanCount
+     * @param context
+     * @param spanCount
      */
-    public void setGridLayoutManager(Context _context,
-                                      final int _spanCount) {
+    public void setGridLayoutManager(Context context,
+                                      final int spanCount) {
         this.currentLayoutManager = LAYOUT_MANAGER_GRID;
-        this.setLayoutManager(new GridLayoutManager(_context, _spanCount));
+        this.setLayoutManager(new GridLayoutManager(context, spanCount));
     }
 
     /**
-     * Allows to change the layout manager to GridLayout
-     * @param _context
-     * @param _spanCount
-     * @param _orientation (e.g. StaggeredGridLayoutManager.VERTICAL)
+     * Allows to change the layout manager to StaggeredGridLayout
+     * @param context
+     * @param spanCount
+     * @param orientation (e.g. StaggeredGridLayoutManager.VERTICAL)
      */
-    public void setStaggeredGridLayoutManager(Context _context,
-                                     final int _spanCount,
-                                     final int _orientation) {
+    public void setStaggeredGridLayoutManager(Context context,
+                                     final int spanCount,
+                                     final int orientation) {
         this.currentLayoutManager = LAYOUT_MANAGER_STAGGERED_GRID;
-        this.setLayoutManager(new StaggeredGridLayoutManager(_spanCount, _orientation));
+        this.setLayoutManager(new StaggeredGridLayoutManager(spanCount, orientation));
     }
 
 
@@ -122,7 +118,7 @@ public final class PaginatedRecyclerView extends RecyclerView {
                     StaggeredGridLayoutManager lm = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
                     visibleItemCount = lm.getChildCount();
                     totalItemCount = lm.getItemCount();
-                    // Important: The StaggeredGridLayout return MORE than one first visible item position
+                    // Important: The StaggeredGridLayout return MORE than one first visible item position, obviously
                     firstVisibleItemPositions = lm.findFirstVisibleItemPositions(firstVisibleItemPositions);
                 }
 
@@ -134,7 +130,7 @@ public final class PaginatedRecyclerView extends RecyclerView {
                         if ((visibleItemCount + firstVisibleItemPositions[0]) >= totalItemCount
                                 && firstVisibleItemPositions[0] >= 0
                                 && totalItemCount >= itemCount) {
-                            askNewPage();
+                            getNewPage();
                         }
                     }
                     // StaggeredGrid scenario
@@ -143,7 +139,7 @@ public final class PaginatedRecyclerView extends RecyclerView {
                             if ((visibleItemCount + firstVisibleItemPositions[i]) >= totalItemCount
                                     && firstVisibleItemPositions[i] >= 0
                                     && totalItemCount >= itemCount) {
-                                askNewPage();
+                                getNewPage();
                                 break;
                             }
                         }
@@ -154,29 +150,29 @@ public final class PaginatedRecyclerView extends RecyclerView {
         });
     }
 
-    private void askNewPage() {
+    private void getNewPage() {
         this.isLoadingNewPage = true;
         if (this.callback!=null) {
-            this.callback.OnNewPageNeeded();
+            this.callback.onNewPageNeeded();
         }
     }
 
 
-    public void newPageReceived(final int _itemCount) {
+    public void newPageReceived(final int itemCount) {
         isLoadingNewPage = false;
-        this.itemCount = (this.itemCount +_itemCount);
+        this.itemCount = (this.itemCount + itemCount);
     }
 
 
     /**
-     * Allows to setUp the recyclerview giving the callback and the initial item count
-     * @param _callback
-     * @param _itemCount
+     * Allows to setup the {@link RecyclerView} giving the callback and the initial item count
+     * @param callback
+     * @param itemCount
      */
-    public void setUpRecyclerView(IPaginatedRecyclerView _callback,
-                                  final int _itemCount) {
-        this.callback = _callback;
-        this.itemCount = _itemCount;
+    public void setUpRecyclerView(IPaginatedRecyclerView callback,
+                                  final int itemCount) {
+        this.callback = callback;
+        this.itemCount = itemCount;
     }
 
 
