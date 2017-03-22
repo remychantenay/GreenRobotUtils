@@ -4,7 +4,7 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 /**
- * This class is a simple factory for the Android Design Support Library Snackbar component
+ * This class is a simple factory for the Android Design Support Library {@link Snackbar} component
  * @link http://android-developers.blogspot.co.uk/2015/05/android-design-support-library.html
  * Created by remychantenay on 24/06/2015.
  */
@@ -18,53 +18,63 @@ public final class SnackBarUtils {
 
     /**
      * Allows to display a simple SnackBar (no action)
-     * @param _anchorView
-     * @param _title
+     * @param anchorView
+     * @param title
      */
-    public static void showSimpleSnackbar(View _anchorView, String _title) {
-        Snackbar.make(_anchorView, _title, Snackbar.LENGTH_LONG).show();
+    public static void showSimpleSnackbar(View anchorView, String title) {
+        Snackbar.make(anchorView, title, Snackbar.LENGTH_LONG).show();
     }
 
     /**
-     * Allows to display a SnackBar with an action
-     * @param _anchorView
-     * @param _title
-     * @param _actionText
-     * @param _listener
+     * Allows to display a {@link Snackbar} with an action
+     * @param anchorView
+     * @param title
+     * @param actionText
+     * @param callback
      */
-    public static void showActionSnackbar(View _anchorView, String _title, String _actionText, View.OnClickListener _listener) {
-        Snackbar.make(_anchorView, _title, Snackbar.LENGTH_LONG)
-                .setAction(_actionText, _listener)
+    public static void showActionSnackbar(View anchorView,
+                                          String title,
+                                          String actionText,
+                                          View.OnClickListener callback) {
+        Snackbar.make(anchorView, title, Snackbar.LENGTH_LONG)
+                .setAction(actionText, callback)
                 .show();
     }
 
     /**
-     * Allows to display a SnackBar with an action
-     * @param _anchorView
-     * @param _title
-     * @param _actionText
-     * @param _actionTextColor
-     * @param _listener
+     * Allows to display a {@link Snackbar} with an action
+     * @param anchorView
+     * @param title
+     * @param actionText
+     * @param actionTextColor
+     * @param callback
      */
-    public static void showActionSnackbar(View _anchorView, String _title, String _actionText, int _actionTextColor, View.OnClickListener _listener) {
-        Snackbar.make(_anchorView, _title, Snackbar.LENGTH_LONG)
-                .setAction(_actionText, _listener)
-                .setActionTextColor(_actionTextColor)
+    public static void showActionSnackbar(View anchorView,
+                                          String title,
+                                          String actionText,
+                                          int actionTextColor,
+                                          View.OnClickListener callback) {
+        Snackbar.make(anchorView, title, Snackbar.LENGTH_LONG)
+                .setAction(actionText, callback)
+                .setActionTextColor(actionTextColor)
                 .show();
     }
 
 
     /**
      * Allows to display a SnackBar with an action
-     * Note : Do not disappear until the user interact with the snackbar button
-     * @param _anchorView
-     * @param _title
+     * Note : Do not disappear until the user interact with the {@link Snackbar} button
+     * @param anchorView
+     * @param title
      * @param _action
-     * @param _listener
+     * @param callback
      */
-    public static void showActionSnackbarIndefinite(View _anchorView, String _title, String _action, View.OnClickListener _listener) {
-        Snackbar.make(_anchorView, _title, Snackbar.LENGTH_INDEFINITE)
-                .setAction(_action, _listener)
+    public static void showActionSnackbarIndefinite(View anchorView,
+                                                    String title,
+                                                    String _action,
+                                                    View.OnClickListener callback) {
+        Snackbar.make(anchorView, title, Snackbar.LENGTH_INDEFINITE)
+                .setAction(_action, callback)
                 .show();
     }
 

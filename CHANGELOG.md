@@ -1,5 +1,8 @@
 # Change Log
 
+## Version 1.1.7 (2017-03-22)
+* General refactoring
+
 ## Version 1.1.6 (2017-02-25)
 * Refactoring in PaginatedRecyclerView.java
 

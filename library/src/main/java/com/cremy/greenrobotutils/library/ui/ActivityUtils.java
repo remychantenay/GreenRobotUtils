@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
@@ -25,20 +27,26 @@ public final class ActivityUtils {
     /**
      * Allows to set the activity in full screen mode
      *  (No ToolBar and No Notification bar)
-     * @param _activity
+     * @param activity
      */
-    public static void setFullScreen(Activity _activity)
+    public static void setFullScreen(@NonNull Activity activity) throws IllegalArgumentException
     {
-        _activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        _activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (activity == null) {
+            throw new IllegalArgumentException("The provided activity can't be null.");
+        }
+        activity.requestWindowFeature(Window.FEATURE_NOtitle);
+        activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     /**
      * Allows to force the screen to stay ON for a given activity
-     * @param _activity
+     * @param activity
      */
-    public static void setFlagKeepScreenOn(Activity _activity) {
-        _activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    public static void setFlagKeepScreenOn(@NonNull Activity activity) throws IllegalArgumentException {
+        if (activity == null) {
+            throw new IllegalArgumentException("The provided activity can't be null.");
+        }
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
 
@@ -46,16 +54,19 @@ public final class ActivityUtils {
     /** Allow to set the full immersive mode of an activity
      * NOTE : Only works for <= 4.4 (KitKat)
      * @see http://developer.android.com/training/system-ui/immersive.html
-     * @param _activity
+     * @param activity
      */
-    public static void setFullImmersiveMode(Activity _activity) {
+    public static void setFullImmersiveMode(Activity activity) throws IllegalArgumentException {
+        if (activity == null) {
+            throw new IllegalArgumentException("The provided activity can't be null.");
+        }
 
         if (Build.VERSION.SDK_INT >= SDK_KITKAT)
         {
             // Set the IMMERSIVE flag.
             // Set the content to appear under the system bars so that the content
             // doesn't resize when the system bars hide and show.
-            _activity.getWindow().getDecorView().setSystemUiVisibility(
+            activity.getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -70,16 +81,20 @@ public final class ActivityUtils {
      * Allows to set the full immersive mode of an activity
      * NOTE : Only works for <= 4.4 (KitKat)
      * @see http://developer.android.com/training/system-ui/immersive.html
-     * @param _activity
+     * @param activity
      */
-    public static void hideNavigationBar(Activity _activity) {
+    public static void hideNavigationBar(Activity activity)
+            throws IllegalArgumentException {
+        if (activity == null) {
+            throw new IllegalArgumentException("The provided activity can't be null.");
+        }
 
         if (Build.VERSION.SDK_INT >= SDK_KITKAT)
         {
             // Set the IMMERSIVE flag.
             // Set the content to appear under the system bars so that the content
             // doesn't resize when the system bars hide and show.
-            _activity.getWindow().getDecorView().setSystemUiVisibility(
+            activity.getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -90,93 +105,104 @@ public final class ActivityUtils {
 
     /**
      * Allows to cancel the animation during the close event of a given activity
-     * @param _activity
+     * @param activity
      */
-    public static void cancelCloseAnimation(Activity _activity) {
+    public static void cancelCloseAnimation(@NonNull Activity activity)
+            throws IllegalArgumentException {
+        if (activity == null) {
+            throw new IllegalArgumentException("The provided activity can't be null.");
+        }
+
         // We just avoid the activity close animation
-        _activity.overridePendingTransition(0, 0);
+        activity.overridePendingTransition(0, 0);
     }
 
 
     /**
      * Allows to set the content of the view resizable when the soft keyboard appear
-     * @param _activity
+     * @param activity
      */
-    public static void setResizableContentWhenKeyboardAppear(Activity _activity) {
-        _activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    public static void setResizableContentWhenKeyboardAppear(@NonNull Activity activity)
+            throws IllegalArgumentException {
+        if (activity == null) {
+            throw new IllegalArgumentException("The provided activity can't be null.");
+        }
+
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
 
     /**
-     * Allows to change the toolbar back arrow and set a WHITE one
-     * @param _context
-     * @param _actionBar
+     * Allows to change the toolbar back arrow and set a _white_ one
+     * @param context
+     * @param actionBar
      */
-    public static void setToolbarCustomWhiteBackArrow(Context _context, ActionBar _actionBar) {
-        _actionBar.setDisplayHomeAsUpEnabled(true);
-        final Drawable upArrow = _context.getResources().getDrawable(R.drawable.ic_action_back_arrow_white);
-        _actionBar.setHomeAsUpIndicator(upArrow);
+    public static void setToolbarCustomWhiteBackArrow(Context context, ActionBar actionBar) {
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        final Drawable upArrow = ContextCompat.getDrawable(context, R.drawable.ic_action_back_arrow_white);
+        actionBar.setHomeAsUpIndicator(upArrow);
     }
 
     /**
-     * Allows to change the toolbar back arrow and set a BLACK one
-     * @param _context
-     * @param _actionBar
+     * Allows to change the toolbar back arrow and set a _black_ one
+     * @param context
+     * @param actionBar
      */
-    public static void setToolbarCustomBlackBackArrow(Context _context, ActionBar _actionBar) {
-        _actionBar.setDisplayHomeAsUpEnabled(true);
-        final Drawable upArrow = _context.getResources().getDrawable(R.drawable.ic_action_back_arrow_black);
-        _actionBar.setHomeAsUpIndicator(upArrow);
+    public static void setToolbarCustomBlackBackArrow(Context context, ActionBar actionBar) {
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        final Drawable upArrow = ContextCompat.getDrawable(context, R.drawable.ic_action_back_arrow_black);
+        actionBar.setHomeAsUpIndicator(upArrow);
     }
 
 
     /**
-     * Allows to change the toolbar hamburger/drawer menu icon to a WHITE one
-     * @param _context
-     * @param _actionBarDrawerToggle
+     * Allows to change the toolbar hamburger/drawer menu icon to a _white_ one
+     * @param context
+     * @param actionBarDrawerToggle
      */
-    public static void setToolbarCustomWhiteMenuIcon(Context _context, ActionBarDrawerToggle _actionBarDrawerToggle) {
-        _actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
-        _actionBarDrawerToggle.setHomeAsUpIndicator(_context.getResources().getDrawable(R.drawable.ic_menu_white_24dp));
+    public static void setToolbarCustomWhiteMenuIcon(Context context,
+                                                     ActionBarDrawerToggle actionBarDrawerToggle) {
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        actionBarDrawerToggle.setHomeAsUpIndicator(ContextCompat.getDrawable(context, R.drawable.ic_menu_white_24dp));
     }
 
 
     /**
      * Allows to apply a fragment into a container view (view a given view id, e.g R.id.container)
-     * @param _activity
-     * @param _fragment
-     * @param _idView
+     * @param activity
+     * @param fragment
+     * @param idView
      */
-    public static void applyFragment(FragmentActivity _activity, Fragment _fragment, int _idView)
+    public static void applyFragment(FragmentActivity activity, Fragment fragment, int idView)
     {
-        android.support.v4.app.FragmentManager fragmentManager = _activity.getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(_idView, _fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
+        android.support.v4.app.FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(idView, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
     }
 
     /**
      * Allows to add a fragment into a container view (view a given view id, e.g R.id.container)
-     * @param _activity
-     * @param _fragment
-     * @param _idView
-     * @param _fragmentTag
+     * @param activity
+     * @param fragment
+     * @param idView
+     * @param fragmentTag
      */
-    public static void addFragment(FragmentActivity _activity,
-                                   Fragment _fragment,
-                                   int _idView,
-                                   String _fragmentTag)
+    public static void addFragment(FragmentActivity activity,
+                                   Fragment fragment,
+                                   int idView,
+                                   String fragmentTag)
     {
-        android.support.v4.app.FragmentManager fragmentManager = _activity.getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(_idView, _fragment, _fragmentTag).commit();
+        android.support.v4.app.FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(idView, fragment, fragmentTag).commit();
     }
 
     /**
      * Allows to get a fragment with a given tag
-     * @param _activity
-     * @param _fragmentTag
+     * @param activity
+     * @param fragmentTag
      */
-    public static Fragment getFragmentByTag(FragmentActivity _activity, String _fragmentTag)
+    public static Fragment getFragmentByTag(FragmentActivity activity, String fragmentTag)
     {
-        android.support.v4.app.FragmentManager fragmentManager = _activity.getSupportFragmentManager();
-        return fragmentManager.findFragmentByTag(_fragmentTag);
+        android.support.v4.app.FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        return fragmentManager.findFragmentByTag(fragmentTag);
     }
 }

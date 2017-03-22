@@ -10,10 +10,10 @@ public class FloatingActionButtonUtils {
 
     /**
      * Allows to set a simple background color to a given {@link FloatingActionButton}
-     * @param _fab
-     * @param _color
+     * @param fab
+     * @param color
      */
-    public static void setFabBackgroundColor(FloatingActionButton _fab, int _color) {
+    public static void setFabBackgroundColor(FloatingActionButton fab, int color) {
         int[][] states = {
                 {android.R.attr.state_enabled},
                 {android.R.attr.state_checked},
@@ -21,12 +21,12 @@ public class FloatingActionButtonUtils {
                 {android.R.attr.state_pressed}
         };
         int[] colors = {
-                _color,
-                _color,
-                _color,
-                _color,
+                color,
+                color,
+                color,
+                color,
         };
         ColorStateList colorStateList = new ColorStateList(states, colors);
-        _fab.setBackgroundTintList(colorStateList);
+        fab.setBackgroundTintList(colorStateList);
     }
 }
